@@ -18,8 +18,10 @@
                     <div>{{ burger.carne }}</div>
                     <div>
                         <ul>
-                            <li v-for="(opcional , i) in burger.opcionais" :key="i">{{ opcional }}</li>
-                           
+                            <template v-if="burger.opcionais.length">
+                                <li  v-for="(opcional , i) in burger.opcionais" :key="i">{{ opcional }}</li>
+                            </template>
+                            <li v-else>Sem opcionias</li> 
                         </ul>
                     </div>
                     <div>
@@ -28,7 +30,7 @@
                             <!-- "A propriedade selected será verdadeira se burger.status for igual a status.tipo." -->
                             <option v-for="status in status" value="" :key="status.id" :selected="burger.status == status.tipo">  {{ status.tipo }}</option>
                         </select>
-                        <button class="delet-btn">Cancelar</button>
+                        <button class="delet-btn" @click="dleeteBurger(burger.id)">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -66,6 +68,17 @@
 
                 this.status = data
                 console.log(data)
+            },
+
+            // deleta o burger do banco 
+            async dleeteBurger(id) {
+                const req = await fetch(`http://localhost:3000/burgers/${id}` ,{
+                    method: 'DELETE'
+                })
+
+                const res = await req.json()
+
+                this.getPedidos()
             }
         },
 

@@ -79,15 +79,22 @@
   ],
   "burgers": [
     {
-      "id": "e6a9",
+      "id": "30d4",
       "nome": "Santos Avelar",
-      "carne": "Picanha",
-      "pao": "3 Queijos",
+      "carne": "Maminha",
+      "pao": "Italiano Branco",
       "opcionais": [
         "Bacon",
-        "Cheddar",
-        "Cebola roxa"
+        "Salame"
       ],
+      "status": "Solocitado"
+    },
+    {
+      "id": "a7b2",
+      "nome": "Kohay ",
+      "carne": "Veggie burger",
+      "pao": "Parmesão e Orégano",
+      "opcionais": [],
       "status": "Solocitado"
     }
   ]
