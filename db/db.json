@@ -87,15 +87,7 @@
         "Bacon",
         "Salame"
       ],
-      "status": "Solocitado"
-    },
-    {
-      "id": "a7b2",
-      "nome": "Kohay ",
-      "carne": "Veggie burger",
-      "pao": "Parmesão e Orégano",
-      "opcionais": [],
-      "status": "Solocitado"
+      "status": "Solicitado"
     }
   ]
 }

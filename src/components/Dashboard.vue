@@ -25,12 +25,12 @@
                         </ul>
                     </div>
                     <div>
-                        <select name="status" class="status">
+                        <select name="status" class="status" @change="updateStatus($event, burger.id)">
                             <option value="">Selecione</option>
                             <!-- "A propriedade selected será verdadeira se burger.status for igual a status.tipo." -->
-                            <option v-for="status in status" value="" :key="status.id" :selected="burger.status == status.tipo">  {{ status.tipo }}</option>
+                            <option v-for="status in status" :value="status.tipo" :key="status.id" :selected="burger.status == status.tipo">  {{ status.tipo }}</option>
                         </select>
-                        <button class="delet-btn" @click="dleeteBurger(burger.id)">Cancelar</button>
+                        <button class="delet-btn" @click="deleteBurger(burger.id)">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
             },
 
             // deleta o burger do banco 
-            async dleeteBurger(id) {
+            async deleteBurger(id) {
                 const req = await fetch(`http://localhost:3000/burgers/${id}` ,{
                     method: 'DELETE'
                 })
@@ -79,7 +79,27 @@
                 const res = await req.json()
 
                 this.getPedidos()
-            }
+            },
+
+            async updateStatus(e , id) {
+                // pegando o valor da option que o usuario esta mudando
+                const option = e.target.value
+                console.log(option)
+
+                const datajson = JSON.stringify({status:option})
+
+                const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+                    method:'PATCH',
+                    headers: { "Content-Type": "application/json" },
+                    body: datajson
+                })
+
+                const res  = await req.json()
+
+                console.log(res)
+
+            },
+
         },
 
         mounted() {
